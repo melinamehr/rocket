@@ -30,22 +30,27 @@ class RocketTest < Minitest::Test
     refute @rocket.colour == "red"
   end
 
-  def test_lift_off
-    @rocket.flying? == false
-    assert @rocket.flying? == false
+  def test_lift_off_with_rocket_on_ground
+    assert @rocket.lift_off == true
+    assert @rocket.flying? == true
   end
 
-  def test_lift_off_other
-    @rocket.flying? == true
-    assert @rocket.flying? == false
+  def test_lift_off_with_rocket_flying
+    @rocket.lift_off
+    refute(@rocket.lift_off)
+    assert @rocket.flying?
   end
+
+  # assert(parameter)   <---- blow up unless parameter is true
+  # refute(parameter)    <----- blow up unless parameter is false
+   #
+  # def test_lift_off_other
+  #   @rocket.flying? == true
+  #   assert @rocket.flying? == false
+  # end
 
   # if the rocket is flying it's not lifting off = flying = true
   #   if the rocket isn't flying it is lifting off = flying = false
-
-  def test_status
-    
-
 
 
 
