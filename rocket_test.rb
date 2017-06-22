@@ -41,19 +41,35 @@ class RocketTest < Minitest::Test
     assert @rocket.flying?
   end
 
+  def test_flying_rocket_can_land
+    @rocket = Rocket.new(:flying => true)
+    assert @rocket.land == true
+  end
+
+  def test_flying_rocket_becomes_not_flying_after_land
+    @rocket = Rocket.new(:flying => true)
+    @rocket.land
+    refute @rocket.flying?
+    # or assert @rocket.flying? == false
+  end
+
+  def test_grounded_rocket_cant_land
+    assert @rocket.flying? == false
+    assert @rocket.land == false
+    # refute @rocket.land
+  end
+
   # assert(parameter)   <---- blow up unless parameter is true
   # refute(parameter)    <----- blow up unless parameter is false
-   #
-  # def test_lift_off_other
-  #   @rocket.flying? == true
-  #   assert @rocket.flying? == false
-  # end
 
-  # if the rocket is flying it's not lifting off = flying = true
-  #   if the rocket isn't flying it is lifting off = flying = false
+  def test_if_status_flying_rocket_flying
+    @rocket = Rocket.new(:flying => true)
+    assert_equal @rocket.status, "Rocket #{@rocket.name} is flying through the sky!"
+  end
 
-
-
-
+  def test_if_status_not_flying_rocket_not_flying
+    @rocket.flying?
+    assert_equal @rocket.status, "Rocket #{@rocket.name} is ready for lift off!"
+  end
 
 end

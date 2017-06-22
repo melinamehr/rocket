@@ -34,6 +34,10 @@ class Rocket
     end
   end
 
+  # def land=(state)
+  #   @land = state
+  # end
+
   def land
     if flying?
       @flying = false
